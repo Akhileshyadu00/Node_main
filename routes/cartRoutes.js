@@ -3,9 +3,9 @@ import {
   updateCartItem,
   removeCartItem,
   getCart,
-} from '../controllers/cartController.js';
+} from '../controllers/cartControllers.js';
 
-import { verifyToken } from '../middleware/authMiddleware.js';
+import { verifyToken } from '../middleware/Verify.js';
 
 export function cartRoutes(app) {
   app.get('/api/cart', verifyToken, getCart);          

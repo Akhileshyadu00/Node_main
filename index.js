@@ -5,7 +5,7 @@ dotenv.config();
 
 import { UserRoutes } from './routes/userRoutes.js';
 import { productRoutes } from './routes/productRoutes.js'; 
-import { cartRoutes } from './routes/cartRoutes.js'; // Adjust path as needed
+import { cartRoutes } from './routes/cartRoutes.js'; 
 
 
 
@@ -25,9 +25,9 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
   console.log("DB is connected");
   app.listen(PORT, () => {
-    console.log(` Server is running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
   });
 })
 .catch((err) => {
-  console.error(" DB connection failed:", err.message);
+  console.error("DB connection failed:", err.message);
 });
