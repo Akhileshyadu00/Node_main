@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import { UserRoutes } from './routes/userRoutes.js';
 dotenv.config();
 
 const app = express()
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 5001;
 //// Middleware --convert req.body in json 
 app.use(express.json()); 
 
-
+// Register user-related routes
+UserRoutes(app);
 
 //Database connect
 mongoose.connect(process.env.MONGODB_URI)
