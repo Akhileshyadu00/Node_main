@@ -1,28 +1,33 @@
-import express from 'express'
+import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-import { UserRoutes } from './routes/userRoutes.js';
+import dotenv from 'dotenv';
 dotenv.config();
 
-const app = express()
+import { UserRoutes } from './routes/userRoutes.js';
+import { productRoutes } from './routes/productRoutes.js'; 
+import { cartRoutes } from './routes/cartRoutes.js'; // Adjust path as needed
+
+
+
+const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Middleware to parse JSON
+app.use(express.json());
 
-//// Middleware --convert req.body in json 
-app.use(express.json()); 
-
-// Register user-related routes
+// Routes
 UserRoutes(app);
+productRoutes(app); 
+cartRoutes(app);
 
-//Database connect
+// MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
-    console.log("DB is Conneted");
-    app.listen(5001, () => {
-    console.log("Server is running at port 5001");  
-})
+  console.log("DB is connected");
+  app.listen(PORT, () => {
+    console.log(` Server is running at http://localhost:${PORT}`);
+  });
 })
 .catch((err) => {
-    console.log("DB is not connected", err);   
-})
-
+  console.error(" DB connection failed:", err.message);
+});
