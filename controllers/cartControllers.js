@@ -1,5 +1,5 @@
-import Cart from '../models/Cart.js'; // Adjust path based on your project
-import Product from '../models/Product.js'; // Assuming you reference products
+import Cart from '../models/Cart.js'; 
+import Product from '../models/Product.js'; 
 
 // Add item to cart
 export async function addToCart(req, res) {
